@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="finnkino.js"></script>
+    <link rel="stylesheet" href="finnkino.css">
+</head>
+
+<body onload="loadJSON(city.value)">
+    
+    <h1>Finnkino Movie Information APP</h1>
+    <br>
+    <div id="div1">
+
+        <select name="slc" id="city" onchange="loadJSON(city.value)">
+            <option value="Helsinki">Helsinki</option>
+            <option value="Oulu">Oulu</option>
+            <option value="Vantaa">Vantaa</option>
+            <option value="Tampere">Tampere</option>
+        </select>
+
+    </div>
+    <br>
+    <div id="tabledata">
+
+        <table>
+            <tbody>
+
+            </tbody>
+          </table>
+    </div>
+
+</body>
+
+</html>
