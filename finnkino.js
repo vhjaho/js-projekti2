@@ -3,8 +3,10 @@ function loadJSON(city) {
   var kaupunki = city;
   console.log("Tiedot: " + kaupunki);
 
+  //Luodaan xhttp-pyyntö
   var xhttp = new XMLHttpRequest();
 
+  //Haetaan oikean kaupungin tiedot
   if (city == 'Helsinki') {
     var url = "https://www.finnkino.fi/xml/Schedule/?area=1002"
   } else if (city == 'Oulu') {
@@ -16,14 +18,17 @@ function loadJSON(city) {
   }
   //var url = "https://www.finnkino.fi/xml/Schedule/"
 
+  //Lähetetään pyyntö
   xhttp.open("GET", url, true);
   xhttp.send();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       console.log("Haku onnistui");
 
+      //Luodaan xmlDoc-muuttuja vastauksen perusteella
       var xmlDoc = xhttp.responseXML;
 
+      //Syötetään xml-tiedosto toiseen funktioon
       printJSON(xmlDoc);
 
     }
@@ -33,6 +38,7 @@ function loadJSON(city) {
 
 function printJSON(xmlDoc) {
 
+  //Etsitään tietoja tag'in perusteella xml-dokumentista
   var title = xmlDoc.getElementsByTagName('Title');
 
   var image = xmlDoc.getElementsByTagName('EventSmallImagePortrait');
@@ -43,6 +49,7 @@ function printJSON(xmlDoc) {
 
   var theatre = xmlDoc.getElementsByTagName('TheatreAndAuditorium');
 
+  //Luodaan pöytä, joka esittää tietoja kaupungin perusteella
   var txt = "<table>";
 
   for (var i = 0; i < title.length; i++) {
